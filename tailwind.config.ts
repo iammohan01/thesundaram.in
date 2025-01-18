@@ -14,8 +14,8 @@ export default {
 			},
 			fontFamily: {
 				sans: ['CabinetGrotesk', 'system-ui', 'sans-serif'],
-				array : ['Array']
-			},
+				array: ['Array']
+			}
 		}
 	},
 

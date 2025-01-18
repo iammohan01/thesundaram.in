@@ -7,23 +7,25 @@
 </script>
 
 <!-- <div class="h-full"> -->
-	<div class="flex h-[50%] w-full flex-col items-start justify-end">
-		<div class="w-[85%] p-[5%]">
-			<img src="/mohan-1.jpg" class="aspect-square max-w-[182px] rounded-full" alt="" />
-			<h1 class="text-4xl font-black">Mohanasundaram</h1>
-			<p class="text-2xl font-semibold">Hey! I'm a hobbyist software developer and tinkerer.</p>
-			<div class="flex h-[10%]">
-				{#each urls as url}
-					<a
-						class="font-array font-base inline-block w-[65px] transition-all duration-300 hover:underline"
-						href={url.url}
-					>
-						{url.name}
-					</a>
-				{/each}
-			</div>
+<div class="flex h-[50%] w-full flex-col items-start justify-end">
+	<div class="w-[85%] p-[5%]">
+		<img src="/mohan-1.jpg" class="aspect-square max-w-[182px] rounded-full" alt="" />
+		<h1 class="text-4xl font-black">Mohanasundaram</h1>
+		<p class="inverted bg-black font-array text-2xl font-semibold text-white">
+			&nbsp; Hey! I'm a hobbyist software tinkerer and developer.
+		</p>
+		<div class="flex h-[10%]">
+			<!-- {#each urls as url}
+				<a
+					class="font-base inline-block w-[65px] font-array transition-all duration-300 hover:underline"
+					href={url.url}
+				>
+					{url.name}
+				</a>
+			{/each} -->
 		</div>
-		<!-- <div class="h-[10%] ee w-full"> -->
-		<!-- </div> -->
 	</div>
+	<!-- <div class="h-[10%] ee w-full"> -->
+	<!-- </div> -->
+</div>
 <!-- </div> -->
