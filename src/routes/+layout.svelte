@@ -1,7 +1,6 @@
 <script lang="ts">
 	import '../app.css';
 	import MoveRight from '../components/move-right.svelte';
-	import ThemeToggle from '../components/theme-toggle.svelte';
 	import { page } from '$app/stores';
 	import { goto, onNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
@@ -156,12 +155,11 @@
 	on:touchend={handleTouchEnd}
 />
 
-<ThemeToggle />
 
 <div class="container relative mx-auto flex min-h-[100dvh] w-full max-w-[1000px] bg-pattern bg-contain">
 	<div class="relative flex w-full flex-col">
 		<!-- Main content area -->
-		<div style="view-transition-name: page" class="flex-1 w-full md:w-3/4 overflow-y-auto pb-20 md:pb-0 mt-52">
+		<div style="view-transition-name: page" class="flex-1 w-full md:w-3/4 overflow-y-auto pb-20 md:pb-0 mt-[20%]">
 			<div class="flex w-full flex-col items-start justify-end px-4 md:px-0">
 				<div class="w-full md:w-[85%] p-[5%]">
 					<div class="flex flex-col items-start gap-4">

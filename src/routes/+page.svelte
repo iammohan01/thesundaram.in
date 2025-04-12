@@ -1,6 +1,7 @@
 <script>
 	import mohanImage from '../../static/mohan-1.jpg?enhanced';
 	import { Github, Linkedin, Mail } from 'lucide-svelte';
+	import ThemeToggle from '../components/theme-toggle.svelte';
 
 	let urls = [
 		{ name: 'Email', url: 'mailto:mohanasundaram.j@zohomail.in' , icon: Mail },
@@ -13,6 +14,7 @@
   <title>Mohanasundaram</title>
   <meta name="description" content="Mohanasundaram's personal website" />
 </svelte:head>
+<ThemeToggle />
 
 <enhanced:img
 	src={mohanImage}
