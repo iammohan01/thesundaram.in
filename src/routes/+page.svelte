@@ -24,8 +24,8 @@
 				alt="mohan profile image"
 			/>
 			<h1 class="text-3xl md:text-4xl font-black">Mohanasundaram</h1>
-			<p class="inverted bg-black font-arrnay text-xl md:text-2xl font-semibold text-white">
-				&nbsp; Hey! I'm a hobbyist software tinkerer and developer.
+			<p class="inverted bg-black font-arrnay text-xl md:text-2xl font-semibold text-white px-3">
+				Hey! I'm a hobbyist software tinkerer and developer.
 			</p>
 			<div class="flex flex-wrap gap-4 p-4">
 				{#each urls as url}
