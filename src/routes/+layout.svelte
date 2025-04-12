@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import MoveRight from '../components/move-right.svelte';
+	import ThemeToggle from '../components/theme-toggle.svelte';
 	import { page } from '$app/stores';
 	import { goto, onNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
@@ -144,20 +145,24 @@
 	on:touchend={handleTouchEnd}
 />
 
+<ThemeToggle />
+
 <div class="container relative mx-auto flex min-h-[100dvh] w-full max-w-[1000px] bg-pattern bg-contain">
 	<div class="relative flex w-full flex-col">
 		<!-- Main content area -->
-		<div style="view-transition-name: page" class="flex-1 w-full bg-c-grey md:w-3/4 overflow-y-auto pb-20 md:pb-0">
+		<div style="view-transition-name: page" class="flex-1 w-full md:w-3/4 overflow-y-auto pb-20 md:pb-0">
 			{@render children()}
 		</div>
 		
 		<!-- Mobile Navigation - Always visible at bottom -->
-		<div class="fixed bottom-0 left-0 right-0 z-50 bg-white shadow-lg md:hidden">
+		<div class="fixed bottom-0 left-0 right-0 z-50 shadow-lg md:hidden" style="background-color: var(--nav-bg);">
 			<nav class="mx-auto max-w-[1000px] flex items-center justify-around p-4">
 				{#each routes as route}
 					<a
 						href={route.path}
-						class="inverted group flex cursor-pointer items-center justify-center gap-1 text-lg font-thin transition-all duration-300 px-3 py-1 {$page.url.pathname === route.path && 'inverted bg-black text-white !font-bold'}"
+						class="group flex cursor-pointer items-center justify-center gap-1 text-lg font-thin transition-all duration-300 px-3 py-1"
+						style="color: var(--nav-text);"
+						class:active={$page.url.pathname === route.path}
 					>
 						{route.name}
 					</a>
@@ -166,20 +171,20 @@
 		</div>
 
 		<!-- Desktop Navigation -->
-		<div class="hidden md:absolute md:right-[5%] md:flex md:h-[50%] md:max-h-[900px] md:w-1/5 md:flex-col md:items-end md:justify-end">
+		<div class="hidden md:absolute md:right-[5%] md:flex md:h-[50%] md:max-h-[900px] md:w-1/5 md:flex-col md:items-end md:justify-end p-4 rounded-lg" style="background-color: var(--nav-bg);">
 			{#each routes as route}
 				<a
 					href={route.path}
-					class="{$page.url.pathname === route.path && 'inverted bg-black text-white'}
-						inverted group flex cursor-pointer items-end justify-end gap-2 text-4xl font-thin transition-all duration-300 hover:text-4xl hover:font-black"
+					class="group flex cursor-pointer items-end justify-end gap-2 text-4xl font-thin transition-all duration-300 hover:text-4xl hover:font-black"
+					style="color: var(--nav-text);"
+					class:active={$page.url.pathname === route.path}
 				>
 					&nbsp; {route.name}
 					<span
-						class="opacity-0 transition-all duration-300 {$page.url.pathname !== route.path &&
-							'group-hover:opacity-100'} {$page.url.pathname === route.path &&
-							'opacity-100'}"
+						class="opacity-0 transition-all duration-300"
+						class:opacity-100={$page.url.pathname === route.path || false}
 					>
-						<MoveRight color={$page.url.pathname === route.path ? 'white' : 'currentColor'} />
+						<MoveRight color="currentColor" />
 					</span>
 				</a>
 			{/each}
@@ -189,6 +194,12 @@
 </div>
 
 <style>
+	.active {
+		background-color: var(--nav-active-bg);
+		color: var(--nav-active-text) !important;
+		font-weight: bold;
+	}
+
 	::view-transition-old(page) {
 		animation: slide-out 500ms ease-in-out;
 	}
@@ -199,22 +210,18 @@
 
 	@keyframes slide-out {
 		from {
-			/* transform: translateY(0); */
 			opacity: 1;
 		}
 		to {
-			/* transform: translateY(25px); */
 			opacity: 0;
 		}
 	}
 
 	@keyframes slide-in {
 		from {
-			/* transform: translateY(-25px); */
 			opacity: 0;
 		}
 		to {
-			/* transform: translateY(0); */
 			opacity: 1;
 		}
 	}
