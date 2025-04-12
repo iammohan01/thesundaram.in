@@ -57,7 +57,7 @@
 </svelte:head>
 
 <p class="text-xl">
-	<span class="text-4xl font-black block">Past (till 2021)</span>
+	<span class="text-4xl font-black block">Past (till 2022)</span>
 	{#each ff.past as line}
 		<TextLine
 			text={line.text}
@@ -65,7 +65,7 @@
 			{linkReferences}
 		/>
 	{/each}
-	<span class="text-4xl font-black block mt-8 mb-4">Present (2025)</span>
+	<span class="text-4xl font-black block mt-8 mb-4">Present (from 2022)</span>
 	{#each ff.present as line}
 		<TextLine
 			text={line.text}
