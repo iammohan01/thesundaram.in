@@ -19,7 +19,7 @@
 	let routes = [
 		{ name: 'me', path: '/' },
 		{ name: 'about', path: '/about' },
-		{ name: 'projects', path: '/projects' },
+		// { name: 'projects', path: '/projects' },
 		{ name: 'thoughts', path: '/thoughts' }
 	];
 	const kk = (e)=>{
