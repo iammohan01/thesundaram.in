@@ -16,6 +16,7 @@
 	// i learned frontend, but my job was only backend, so eventually i started to do some admin pannels and stuffs when i'm free,
 
 	const linkReferences = {
+		'ZOHO' : 'https://zoho.com',
 		'Zoho Health care': 'https://www.zoho.com/healthcare/',
 		'Trainercentral' : 'https://www.trainercentral.com/'
 	};
