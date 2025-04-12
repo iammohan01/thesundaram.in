@@ -67,7 +67,7 @@
 <div class="flex h-[50%] w-full flex-col items-start justify-end">
 	<div class="h-full">
 		<div class="flex h-[50%] w-full flex-col items-start justify-end">
-			<p class="h-[10%] px-[5%] w-full text-xl">
+			<p class="h-[10%] px-[5%] w-full text-xl pb-[150px]">
 				{#each content as line}
 					<TextLine
 						text={line.text}

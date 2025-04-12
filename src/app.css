@@ -12,17 +12,47 @@
 	font-family: 'Array';
 	src: url('/Array-Regular.woff2') format('woff2');
 }
-root {
+
+:root {
 	font-family: 'CabinetGrotesk', sans-serif;
 	font-weight: 400;
-	/*font-size: 16px;*/
 	line-height: 1.5;
 	color: #333;
+}
+
+/* Mobile-first base styles */
+html, body {
+	overflow-x: hidden;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	position: fixed;
+}
+
+/* Fix for iOS Safari 100vh issue */
+@supports (-webkit-touch-callout: none) {
+	html, body {
+		height: -webkit-fill-available;
+	}
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+	.inverted::selection {
+		@apply bg-white text-black;
+	}
 }
 
 ::selection {
 	@apply bg-black text-white;
 }
+
 .inverted::selection {
 	@apply bg-white text-black;
+}
+
+/* Prevent text size adjustment on orientation change */
+html {
+	-webkit-text-size-adjust: 100%;
 }

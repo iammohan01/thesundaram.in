@@ -30,6 +30,10 @@
 	let isNavigating = false;
 	let lastZoomLevel = 1;
 
+	let touchStartX = 0;
+	let touchEndX = 0;
+	const minSwipeDistance = 50; // minimum distance for a swipe to be registered
+
 	onMount(() => {
 		if (browser) {
 			lastZoomLevel = window.devicePixelRatio;
@@ -103,32 +107,84 @@
 	const kkk = (e: any) => {
 		console.log(e);
 	};
+
+	const handleTouchStart = (e: TouchEvent) => {
+		touchStartX = e.touches[0].clientX;
+	};
+
+	const handleTouchEnd = async (e: TouchEvent) => {
+		if (isNavigating) return;
+		
+		touchEndX = e.changedTouches[0].clientX;
+		const swipeDistance = touchEndX - touchStartX;
+		
+		if (Math.abs(swipeDistance) < minSwipeDistance) return;
+
+		const currentIndex = routes.findIndex(route => route.path === $page.url.pathname);
+		
+		if (swipeDistance > 0 && currentIndex > 0) {
+			// Swipe right - go to previous route
+			isNavigating = true;
+			await goto(routes[currentIndex - 1].path);
+			isNavigating = false;
+		} else if (swipeDistance < 0 && currentIndex < routes.length - 1) {
+			// Swipe left - go to next route
+			isNavigating = true;
+			await goto(routes[currentIndex + 1].path);
+			isNavigating = false;
+		}
+	};
 </script>
 
-<svelte:window on:keydown={kk} on:wheel={handleScroll} on:wheel|preventDefault={handleZoom}/>
+<svelte:window 
+	on:keydown={kk} 
+	on:wheel={handleScroll} 
+	on:wheel|preventDefault={handleZoom}
+	on:touchstart={handleTouchStart}
+	on:touchend={handleTouchEnd}
+/>
 
-<div class="container relative mx-auto flex h-screen max-w-[1000px] bg-pattern bg-contain">
-	<div style="view-transition-name: page" class="h-full w-3/4 bg-c-grey">
-		{@render children()}
-	</div>
-	<div class="absolute right-[5%] flex h-[50%] max-h-[900px] w-1/5 flex-col items-end justify-end">
-		{#each routes as route}
-			<a
-				href={route.path}
-				class="{$page.url.pathname === route.path && 'inverted bg-black text-white'}
-					 inverted group flex cursor-pointer items-end justify-end gap-2 text-4xl font-thin transition-all duration-300 hover:text-4xl hover:font-black"
-			>
-				&nbsp; {route.name}
-				<span
-					class="opacity-0 transition-all duration-300 {$page.url.pathname !== route.path &&
-						'group-hover:opacity-100'} {$page.url.pathname === route.path &&
-						'opacity-100'}"
+<div class="container relative mx-auto flex min-h-[100dvh] w-full max-w-[1000px] bg-pattern bg-contain">
+	<div class="relative flex w-full flex-col">
+		<!-- Main content area -->
+		<div style="view-transition-name: page" class="flex-1 w-full bg-c-grey md:w-3/4 overflow-y-auto pb-20 md:pb-0">
+			{@render children()}
+		</div>
+		
+		<!-- Mobile Navigation - Always visible at bottom -->
+		<div class="fixed bottom-0 left-0 right-0 z-50 bg-white shadow-lg md:hidden">
+			<nav class="mx-auto max-w-[1000px] flex items-center justify-around p-4">
+				{#each routes as route}
+					<a
+						href={route.path}
+						class="inverted group flex cursor-pointer items-center justify-center gap-1 text-lg font-thin transition-all duration-300 px-3 py-1 {$page.url.pathname === route.path && 'inverted bg-black text-white !font-bold'}"
+					>
+						{route.name}
+					</a>
+				{/each}
+			</nav>
+		</div>
+
+		<!-- Desktop Navigation -->
+		<div class="hidden md:absolute md:right-[5%] md:flex md:h-[50%] md:max-h-[900px] md:w-1/5 md:flex-col md:items-end md:justify-end">
+			{#each routes as route}
+				<a
+					href={route.path}
+					class="{$page.url.pathname === route.path && 'inverted bg-black text-white'}
+						inverted group flex cursor-pointer items-end justify-end gap-2 text-4xl font-thin transition-all duration-300 hover:text-4xl hover:font-black"
 				>
-					<MoveRight color={$page.url.pathname === route.path ? 'white' : 'currentColor'} />
-				</span>
-			</a>
-		{/each}
-		<div class="h-[10%]"></div>
+					&nbsp; {route.name}
+					<span
+						class="opacity-0 transition-all duration-300 {$page.url.pathname !== route.path &&
+							'group-hover:opacity-100'} {$page.url.pathname === route.path &&
+							'opacity-100'}"
+					>
+						<MoveRight color={$page.url.pathname === route.path ? 'white' : 'currentColor'} />
+					</span>
+				</a>
+			{/each}
+			<div class="h-[10%]"></div>
+		</div>
 	</div>
 </div>
 
