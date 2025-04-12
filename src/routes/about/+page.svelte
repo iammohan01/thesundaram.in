@@ -1,6 +1,5 @@
 <script>
 	import TextLine from '$lib/components/TextLine.svelte';
-	import mohanImage from '../../../static/mohan-1.jpg?enhanced';
 
 	const content = [
 		{
@@ -8,12 +7,16 @@
 			highlights: ['technology']
 		},
 		{
+			text: "My tech journey began with customizing phones by flashing custom-ROMs. This hands-on experience sparked my interest in programming, leading me to learn coding skills.",
+			highlights: ['custom-ROMs.']
+		},
+		{
 			text: "Self-taught programmer, later trained at Zoho Schools.",
 			highlights: ["Self-taught", "Zoho"]
 		},
 		{
 			text: "Experienced in Java REST APIs and Node.js.",
-			highlights: ['Java', 'REST', 'APIs', 'Node.js']
+			highlights: ['Java', 'Node.js.']
 		},
 		{
 			text: "I'm deeply rooted in exploring and tinkering with the products I work on,",
