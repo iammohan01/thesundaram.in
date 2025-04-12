@@ -29,20 +29,11 @@
 	<meta name="description" content="Mohanasundaram's personal website" />
 </svelte:head>
 
-<div class="flex h-[50%] w-full flex-col items-start justify-end">
-	<div class="h-full">
-		<div class="flex h-[50%] w-full flex-col items-start justify-end">
-			<p class="h-[10%] px-[5%] w-full text-xl">
-				{#each content as line}
-					<TextLine 
-						text={line.text}
-						highlightTerms={line.highlights}
-					/>
-				{/each}
-			</p>
-		</div>
-	</div>
-	<!-- <div class="h-[10%] ee w-full"> -->
-	<!-- </div> -->
-</div>
-<!-- </div> -->
+<p class="text-xl">
+	{#each content as line}
+		<TextLine 
+			text={line.text}
+			highlightTerms={line.highlights}
+		/>
+	{/each}
+</p>

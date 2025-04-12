@@ -1,7 +1,6 @@
 <script>
 	import TextLine from '$lib/components/TextLine.svelte';
 
-
 	// #past
 	// initially i was working as chemical engineer,
 	// in childhood i was always interested in computers,
@@ -15,14 +14,13 @@
 	// then i want to build some things cool with frontend,
 	// i learned frontend, but my job was only backend, so eventually i started to do some admin pannels and stuffs when i'm free,
 
-
 	const content = [
 		{
 			text: 'Skilled in crafting Java REST APIs with Spring Boot and Play framework and tinkering with Node.js.',
-			highlights: ['Java', 'Node.js', 'REST API','Spring Boot', 'Play framework']
+			highlights: ['Java', 'Node.js', 'REST API', 'Spring Boot', 'Play framework']
 		},
 		{
-			text: 'I’m all about diving deep into the products I work on, tweaking and boosting existing systems to make them shine.',
+			text: 'I\'m all about diving deep into the products I work on, tweaking and boosting existing systems to make them shine.',
 			highlights: []
 		},
 		{
@@ -42,11 +40,11 @@
 			highlights: ['full-stack', 'AWS']
 		},
 		{
-			text: 'As the junior dev on my team, I’ve grabbed the reins of front-end development with both hands.',
+			text: 'As the junior dev on my team, I\'ve grabbed the reins of front-end development with both hands.',
 			highlights: []
 		},
 		{
-			text: 'I’ve built apps with React, currently play with Vue on a new project, and have a soft spot for Svelte, which I’ve used for several projects, including this one.',
+			text: 'I\'ve built apps with React, currently play with Vue on a new project, and have a soft spot for Svelte, which I\'ve used for several projects, including this one.',
 			highlights: ['React', 'Vue', 'Svelte']
 		}
 	];
@@ -64,20 +62,11 @@
 	<meta name="description" content="Mohanasundaram's personal website" />
 </svelte:head>
 
-<div class="flex h-[50%] w-full flex-col items-start justify-end">
-	<div class="h-full">
-		<div class="flex h-[50%] w-full flex-col items-start justify-end">
-			<p class="h-[10%] px-[5%] w-full text-xl pb-[150px]">
-				{#each content as line}
-					<TextLine
-						text={line.text}
-						highlightTerms={line.highlights}
-					/>
-				{/each}
-			</p>
-		</div>
-	</div>
-	<!-- <div class="h-[10%] ee w-full"> -->
-	<!-- </div> -->
-</div>
-<!-- </div> -->
+<p class="text-xl">
+	{#each content as line}
+		<TextLine
+			text={line.text}
+			highlightTerms={line.highlights}
+		/>
+	{/each}
+</p>

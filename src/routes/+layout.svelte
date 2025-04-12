@@ -7,6 +7,12 @@
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 
+	// Common meta tags
+	const defaultMeta = {
+		title: 'Mohanasundaram',
+		description: "Mohanasundaram's personal website"
+	};
+
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
 
@@ -137,6 +143,11 @@
 	};
 </script>
 
+<svelte:head>
+	<title>{defaultMeta.title}</title>
+	<meta name="description" content={defaultMeta.description} />
+</svelte:head>
+
 <svelte:window 
 	on:keydown={kk} 
 	on:wheel={handleScroll} 
@@ -150,8 +161,14 @@
 <div class="container relative mx-auto flex min-h-[100dvh] w-full max-w-[1000px] bg-pattern bg-contain">
 	<div class="relative flex w-full flex-col">
 		<!-- Main content area -->
-		<div style="view-transition-name: page" class="flex-1 w-full md:w-3/4 overflow-y-auto pb-20 md:pb-0">
-			{@render children()}
+		<div style="view-transition-name: page" class="flex-1 w-full md:w-3/4 overflow-y-auto pb-20 md:pb-0 mt-52">
+			<div class="flex w-full flex-col items-start justify-end px-4 md:px-0">
+				<div class="w-full md:w-[85%] p-[5%]">
+					<div class="flex flex-col items-start gap-4">
+						{@render children()}
+					</div>
+				</div>
+			</div>
 		</div>
 		
 		<!-- Mobile Navigation - Always visible at bottom -->

@@ -1,7 +1,6 @@
 <script>
 	import TextLine from '$lib/components/TextLine.svelte';
 
-
 	// #past
 	// initially i was working as chemical engineer,
 	// in childhood i was always interested in computers,
@@ -44,8 +43,6 @@
 		}
 	;
 
-	const content = [...ff.past, ...ff.present];
-
 	// worked on front-end backend and aws devops,
 	// I have build few apps using react, built few years back,
 	// svelte I love svelte and build apps with it and this also built with it only
@@ -59,30 +56,21 @@
 	<meta name="description" content="Mohanasundaram's personal website" />
 </svelte:head>
 
-<div class="flex h-[50%] w-full flex-col items-start justify-end">
-	<div class="h-full">
-		<div class="flex h-[50%] w-full flex-col items-start justify-end">
-			<p class="h-[10%] px-[5%] w-full text-xl">
-				<span class="text-4xl font-black">Past (till 2021)</span>
-				{#each ff.past as line}
-					<TextLine
-						text={line.text}
-						highlightTerms={line.highlights}
-						{linkReferences}
-					/>
-				{/each}
-				<span class="text-4xl font-black">Present (2025)</span>
-				{#each ff.present as line}
-					<TextLine
-						text={line.text}
-						highlightTerms={line.highlights}
-						{linkReferences}
-					/>
-				{/each}
-			</p>
-		</div>
-	</div>
-	<!-- <div class="h-[10%] ee w-full"> -->
-	<!-- </div> -->
-</div>
-<!-- </div> -->
+<p class="text-xl">
+	<span class="text-4xl font-black block">Past (till 2021)</span>
+	{#each ff.past as line}
+		<TextLine
+			text={line.text}
+			highlightTerms={line.highlights}
+			{linkReferences}
+		/>
+	{/each}
+	<span class="text-4xl font-black block mt-8 mb-4">Present (2025)</span>
+	{#each ff.present as line}
+		<TextLine
+			text={line.text}
+			highlightTerms={line.highlights}
+			{linkReferences}
+		/>
+	{/each}
+</p>
