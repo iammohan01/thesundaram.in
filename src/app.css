@@ -12,10 +12,10 @@
 	font-family: 'Array';
 	src: url('/Array-Regular.woff2') format('woff2');
 }
-* {
+root {
 	font-family: 'CabinetGrotesk', sans-serif;
 	font-weight: 400;
-	font-size: 16px;
+	/*font-size: 16px;*/
 	line-height: 1.5;
 	color: #333;
 }

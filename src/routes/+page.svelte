@@ -1,28 +1,40 @@
 <script>
+	import mohanImage from '../../static/mohan-1.jpg?enhanced';
+	import { Github, Linkedin, Mail } from '@lucide/svelte';
+
 	let urls = [
-		{ name: 'Email', url: 'mailto:mohanasundaram.j@zohomail.in' },
-		{ name: 'Github', url: 'https://github.com/iammohan01' },
-		{ name: 'Linkedin', url: 'https://www.linkedin.com/in/mohanasundaram-j-061bb7218/' }
+		{ name: 'Email', url: 'mailto:mohanasundaram.j@zohomail.in' , icon: Mail },
+		{ name: 'Github', url: 'https://github.com/iammohan01' , icon : Github },
+		{ name: 'Linkedin', url: 'https://www.linkedin.com/in/mohanasundaram-j-061bb7218/' , icon : Linkedin }
 	];
 </script>
 
+<svelte:head>
+  <title>Mohanasundaram</title>
+  <meta name="description" content="Mohanasundaram's personal website" />
+</svelte:head>
 <!-- <div class="h-full"> -->
+<!--<div class="flex h-[50%] w-full flex-col items-start justify-end">-->
 <div class="flex h-[50%] w-full flex-col items-start justify-end">
 	<div class="w-[85%] p-[5%]">
-		<img src="/mohan-1.jpg" class="aspect-square max-w-[182px] rounded-full" alt="" />
+		<enhanced:img
+			src={mohanImage}
+			class="aspect-square max-w-[182px] rounded-full"
+			alt="mohan profile image"
+		/>
 		<h1 class="text-4xl font-black">Mohanasundaram</h1>
-		<p class="inverted bg-black font-array text-2xl font-semibold text-white">
+		<p class="inverted bg-black font-arrnay text-2xl font-semibold text-white">
 			&nbsp; Hey! I'm a hobbyist software tinkerer and developer.
 		</p>
-		<div class="flex h-[10%]">
-			<!-- {#each urls as url}
+		<div class="flex h-[10%] gap-4 p-4">
+			{#each urls as url}
 				<a
-					class="font-base inline-block w-[65px] font-array transition-all duration-300 hover:underline"
+					class="font-base inline-block font-array transition-all duration-300 hover:underline"
 					href={url.url}
 				>
-					{url.name}
-				</a>
-			{/each} -->
+				<svelte:component this={url.icon}  size="16"/> {url.name}
+			</a>
+			{/each}
 		</div>
 	</div>
 	<!-- <div class="h-[10%] ee w-full"> -->

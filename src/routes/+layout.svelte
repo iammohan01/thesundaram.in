@@ -2,7 +2,7 @@
 	import '../app.css';
 	import MoveRight from '../components/move-right.svelte';
 	import { page } from '$app/state';
-	import { onNavigate } from '$app/navigation';
+	import { goto, onNavigate } from '$app/navigation';
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -18,11 +18,34 @@
 	let { children } = $props();
 	let routes = [
 		{ name: 'me', path: '/' },
-		// { name: 'about', path: '/about' },
-		// { name: 'projects', path: '/projects' },
+		{ name: 'about', path: '/about' },
+		{ name: 'projects', path: '/projects' },
 		{ name: 'thoughts', path: '/thoughts' }
 	];
+	const kk = (e)=>{
+		let current_path = page.url.pathname
+		if(e.code == "ArrowUp"){
+			for (let i = routes.length - 1 ; i > 0 ; i--){
+				if(current_path == routes[i].path){
+					goto(routes[--i].path)
+					return
+				}
+			}
+		}
+		else if(e.code == "ArrowDown"){
+			for (let i =0 ; i< routes.length -1 ; i++){
+				if(current_path == routes[i].path){
+					goto(routes[++i].path)
+					return;
+				}
+			}
+		}
+	}
+	const kkk = (e)=>{
+		console.log(e);
+	}
 </script>
+<svelte:window on:keydown={kk}/>
 
 <div class="container relative mx-auto flex h-screen max-w-[1000px] bg-pattern bg-contain">
 	<div style="view-transition-name: page" class="h-full w-3/4 bg-c-grey">
@@ -38,9 +61,10 @@
 				&nbsp; {route.name}
 				<span
 					class="opacity-0 transition-all duration-300 {page.url.pathname !== route.path &&
-						'group-hover:opacity-100'}"
+						'group-hover:opacity-100'} {page.url.pathname === route.path &&
+						'opacity-100'}"
 				>
-					<MoveRight />
+					<MoveRight color={page.url.pathname === route.path ? 'white' : 'currentColor'} />
 				</span>
 			</a>
 		{/each}
