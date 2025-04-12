@@ -3,6 +3,8 @@
 	import MoveRight from '../components/move-right.svelte';
 	import { page } from '$app/stores';
 	import { goto, onNavigate } from '$app/navigation';
+	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -19,23 +21,58 @@
 	let routes = [
 		{ name: 'me', path: '/' },
 		{ name: 'about', path: '/about' },
-		// { name: 'projects', path: '/projects' },
+		{ name: 'tech', path: '/tech' },
 		{ name: 'work', path: '/work' }
 	];
 
 	let lastScrollTime = 0;
 	const scrollThreshold = 1000; // Increased to 1 second
 	let isNavigating = false;
+	let lastZoomLevel = 1;
+
+	onMount(() => {
+		if (browser) {
+			lastZoomLevel = window.devicePixelRatio;
+		}
+	});
+
+	const handleZoom = async (e: WheelEvent) => {
+		if (!browser) return;
+		if (e.ctrlKey || e.metaKey) {  // Check if it's a zoom event (Ctrl/Cmd + scroll)
+			const now = Date.now();
+			if (now - lastScrollTime < scrollThreshold || isNavigating) return;
+			lastScrollTime = now;
+
+			const currentZoomLevel = window.devicePixelRatio;
+			const isZoomingIn = currentZoomLevel > lastZoomLevel;
+			lastZoomLevel = currentZoomLevel;
+
+			const currentIndex = routes.findIndex(route => route.path === $page.url.pathname);
+			const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight;
+
+			if (isZoomingIn && isAtBottom && currentIndex < routes.length - 1) {
+				isNavigating = true;
+				await goto(routes[currentIndex + 1].path);
+				isNavigating = false;
+			}
+		}
+	};
 
 	const handleScroll = async (e: WheelEvent) => {
+		if (!browser) return;
+		if (e.ctrlKey || e.metaKey) return; // Skip if it's a zoom event
+		
 		const now = Date.now();
 		if (now - lastScrollTime < scrollThreshold || isNavigating) return;
 		lastScrollTime = now;
 
 		const currentIndex = routes.findIndex(route => route.path === $page.url.pathname);
 		
-		if (e.deltaY > 0 && currentIndex < routes.length - 1) {
-			// Scroll down - go to next route
+		// Check if we're at the bottom of the page
+		const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight;
+		
+		if (e.deltaY > 0 && currentIndex < routes.length - 1 && isAtBottom) {
+			// Scroll down - go to next route only if at bottom
 			isNavigating = true;
 			await goto(routes[currentIndex + 1].path);
 			isNavigating = false;
@@ -68,7 +105,7 @@
 	};
 </script>
 
-<svelte:window on:keydown={kk} on:wheel={handleScroll}/>
+<svelte:window on:keydown={kk} on:wheel={handleScroll} on:wheel|preventDefault={handleZoom}/>
 
 <div class="container relative mx-auto flex h-screen max-w-[1000px] bg-pattern bg-contain">
 	<div style="view-transition-name: page" class="h-full w-3/4 bg-c-grey">

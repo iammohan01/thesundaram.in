@@ -3,40 +3,16 @@
 
 	const content = [
 		{
-			text: "Developer with technology as a Hobby.",
-			highlights: ['technology']
+			text: "Developer with technology as a hobby.",
+			highlights: ["technology"],
 		},
 		{
-			text: "My tech journey began with customizing phones by flashing custom-ROMs. This hands-on experience sparked my interest in programming, leading me to learn coding skills.",
-			highlights: ['custom-ROMs.']
+			text: "My tech journey kicked off with flashing custom-ROMs on phones, igniting my passion for programming and pushing me to hone my coding skills.",
+			highlights: ["custom-ROMs"],
 		},
 		{
-			text: "Self-taught programmer, later trained at Zoho Schools.",
-			highlights: ["Self-taught", "Zoho"]
-		},
-		{
-			text: "Experienced in Java REST APIs and Node.js.",
-			highlights: ['Java', 'Node.js.']
-		},
-		{
-			text: "I'm deeply rooted in exploring and tinkering with the products I work on,",
-			highlights: []
-		},
-		{
-			text: "constantly finding ways to optimize and enhance existing systems rather than building from scratch.",
-			highlights: []
-		},
-		{
-			text: "My full-stack experience spans front-end, back-end, and AWS DevOps.",
-			highlights: ['full-stack', 'front-end', 'back-end', 'AWS', 'DevOps']
-		},
-		{
-			text: "Though I'm the junior developer on my team, I've taken complete ownership of front-end development.",
-			highlights: []
-		},
-		{
-			text: "I've built applications with React in the past, currently work with Vue on a new project, and have a particular fondness for Svelte which I've used to build several applications, including this.",
-			highlights: ['React', 'Vue', 'Svelte']
+			text: "Fueled by curiosity and grit, I dove into a self-taught programming adventure, which led me to Zoho Schools.",
+			highlights: ["self-taught", "Zoho Schools"],
 		}
 	];
 
