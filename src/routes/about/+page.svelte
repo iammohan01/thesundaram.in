@@ -4,7 +4,7 @@
 	const content = [
 		{
 			text: "A coder by craft, weaving tech's magic in moments of muse.",
-			highlights: ["magic",'A coder by craft'],
+			highlights: ['A coder by craft'],
 		},
 		{
 			text: "My tech journey kicked off with flashing custom-ROMs on phones, igniting my passion for programming and pushing me to hone my coding skills.",

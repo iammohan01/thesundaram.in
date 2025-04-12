@@ -36,7 +36,7 @@
 					highlights: ['Trainercentral','ZOHO']
 				},
 				{
-					text: 'And, At the same moment I\'m building on Zoho Health care system\'s one of products, Not yet released',
+					text: 'And, At the same moment I\'m building Zoho Health care system\'s one of products, Not yet released',
 					highlights: ['Zoho Health care']
 				}
 			]

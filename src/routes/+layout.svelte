@@ -5,6 +5,7 @@
 	import { goto, onNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
+	import ThemeToggle from '../components/theme-toggle.svelte';
 
 	// Common meta tags
 	const defaultMeta = {
@@ -171,6 +172,9 @@
 		
 		<!-- Mobile Navigation - Always visible at bottom -->
 		<div class="fixed bottom-0 left-0 right-0 z-50 shadow-lg md:hidden" style="background-color: var(--nav-bg);">
+			<span class:hidden={$page.url.pathname !== '/'}>
+				<ThemeToggle  />
+			</span>
 			<nav class="mx-auto max-w-[1000px] flex items-center justify-around p-4">
 				{#each routes as route}
 					<a
@@ -186,7 +190,14 @@
 		</div>
 
 		<!-- Desktop Navigation -->
-		<div class="hidden md:absolute md:right-[5%] md:flex md:h-[50%] md:max-h-[900px] md:w-1/5 md:flex-col md:items-end md:justify-end p-4 rounded-lg" style="background-color: var(--nav-bg);">
+		<div class="hidden md:absolute md:right-[5%] md:flex pt-[20%] md:w-1/5 md:flex-col md:items-end md:justify-end p-4 rounded-lg" style="background-color: var(--nav-bg);">
+			<ThemeToggle  />
+			<p
+				class="text-4xl font-black mb-8"
+				style="color: var(--nav-text);"
+			>
+				mohan
+			</p>
 			{#each routes as route}
 				<a
 					href={route.path}

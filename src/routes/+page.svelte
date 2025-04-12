@@ -14,7 +14,7 @@
   <title>Mohanasundaram</title>
   <meta name="description" content="Mohanasundaram's personal website" />
 </svelte:head>
-<ThemeToggle />
+<!--<ThemeToggle />-->
 
 <enhanced:img
 	src={mohanImage}
@@ -34,4 +34,7 @@
 			<svelte:component this={url.icon} size="16"/> {url.name}
 		</a>
 	{/each}
+
+
+	<!-- add location, current tech stack, and a short intro -->
 </div>
