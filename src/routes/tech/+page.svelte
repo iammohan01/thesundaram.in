@@ -18,8 +18,8 @@
 
 	const content = [
 		{
-			text: 'Skilled in crafting Java REST APIs and tinkering with Node.js.',
-			highlights: ['Java', 'Node.js', 'REST API']
+			text: 'Skilled in crafting Java REST APIs with Spring Boot and Play framework and tinkering with Node.js.',
+			highlights: ['Java', 'Node.js', 'REST API','Spring Boot', 'Play framework']
 		},
 		{
 			text: 'I’m all about diving deep into the products I work on, tweaking and boosting existing systems to make them shine.',
